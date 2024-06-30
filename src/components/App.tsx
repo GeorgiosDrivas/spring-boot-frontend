@@ -3,21 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoutes from '../utils/privateRoutes';
 import PublicRoutes from '../utils/publicRoutes';
 import Landing from './landing';
-import EmployeeLogin from './employee/EmployeeLogin';
-import EmployeeSignUp from './employee/EmployeeSignUp';
 import EmployeeDashboard from './employee/employeeDashboard';
-import EmployerLogin from './employer/EmployerLogin';
-import EmployerSignUp from './employer/EmployerSignUp';
 import EmployerDashboard from './employer/employerDashboard';
+import SignUp from './signUp';
+import Login from './login';
 
-// Function to handle clearing the token on window close
-const clearTokenOnWindowClose = () => {
+export const clearTokenOnWindowClose = () => {
     window.addEventListener('beforeunload', () => {
         localStorage.removeItem('token');
     });
 };
-
-// Call this function once when the app starts
 clearTokenOnWindowClose();
 
 const App: React.FC = () => {
@@ -36,11 +31,19 @@ const App: React.FC = () => {
                     <Route index element={<EmployerDashboard />} />
                 </Route>
 
-                <Route path="/employee-login" element={<EmployeeLogin />} />
-                <Route path="/employee-sign-up" element={<EmployeeSignUp />} />
+                <Route path="/employee-login" element={
+                    <Login urlType='employees' navigationType='employee'/>
+                } />
+                <Route path="/employee-sign-up" element={
+                    <SignUp urlType="employees" navigateType="employee"/>
+                } />
 
-                <Route path="/employer-login" element={<EmployerLogin />} />
-                <Route path="/employer-sign-up" element={<EmployerSignUp />} />
+                <Route path="/employer-login" element={
+                    <Login urlType='employers' navigationType='employer'/>
+                } />
+                <Route path="/employer-sign-up" element={
+                    <SignUp urlType="employers" navigateType="employer"/>
+                } />
 
             </Routes>
         </Router>

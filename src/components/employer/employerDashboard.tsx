@@ -3,10 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import EmployerProfile from './employerProfile';
+
+interface EmployerData {
+    companyName: string;
+    location: string;
+    field: string;
+}
 
 export default function EmployerDashboard() {
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<EmployerData | null>(null);
     const id = useSelector((state: RootState) => state.userSlice.id);
     
     useEffect(() => {
@@ -34,8 +42,30 @@ export default function EmployerDashboard() {
 
     return (
         <>
-            <h1>Hello employer!</h1>
-            <button onClick={handleLogout}>log out</button>
+        <h1>{data ? `${data.companyName}` : ""}</h1>
+        <Tabs>
+            <TabList style={{listStyleType: "none"}}>
+                <Tab>
+                    <button>Evaluations</button>
+                </Tab>
+                <Tab>
+                    <button>Profile</button>
+                </Tab>
+                <Tab>
+                    <button>Settings</button>
+                </Tab>
+            </TabList>
+            <TabPanel>
+                Your Evaluations
+            </TabPanel>
+            <TabPanel>
+                <EmployerProfile userId={id}/>
+            </TabPanel>
+            <TabPanel>
+                Your Settings
+                <button onClick={handleLogout}>log out</button>
+            </TabPanel>
+        </Tabs>
         </>
     );
 }
