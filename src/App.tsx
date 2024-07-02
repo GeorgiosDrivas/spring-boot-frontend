@@ -1,18 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PrivateRoutes from '../utils/privateRoutes';
-import PublicRoutes from '../utils/publicRoutes';
-import Landing from './landing';
-import EmployeeDashboard from './employee/employeeDashboard';
-import EmployerDashboard from './employer/employerDashboard';
-import SignUp from './signUp';
-import Login from './login';
+import PrivateRoutes from './utils/privateRoutes';
+import PublicRoutes from './utils/publicRoutes';
+import Landing from './components/landing';
+import EmployeeDashboard from './components/employee/employeeDashboard';
+import EmployerDashboard from './components/employer/employerDashboard';
+import SignUp from './components/signUp';
+import Login from './components/login';
+import { clearTokenOnWindowClose } from 'src/utils/clearTokenOnWindowClose';
 
-export const clearTokenOnWindowClose = () => {
-    window.addEventListener('beforeunload', () => {
-        localStorage.removeItem('token');
-    });
-};
 clearTokenOnWindowClose();
 
 const App: React.FC = () => {
@@ -32,14 +28,14 @@ const App: React.FC = () => {
                 </Route>
 
                 <Route path="/employee-login" element={
-                    <Login urlType='employees' navigationType='employee'/>
+                    <Login urlType='employees' navigateType='employee'/>
                 } />
                 <Route path="/employee-sign-up" element={
                     <SignUp urlType="employees" navigateType="employee"/>
                 } />
 
                 <Route path="/employer-login" element={
-                    <Login urlType='employers' navigationType='employer'/>
+                    <Login urlType='employers' navigateType='employer'/>
                 } />
                 <Route path="/employer-sign-up" element={
                     <SignUp urlType="employers" navigateType="employer"/>

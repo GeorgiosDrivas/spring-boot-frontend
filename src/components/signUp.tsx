@@ -2,18 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../hooks/useHandleClick';
+import { Authenticate, User } from 'src/types/types';
 
-interface User {
-    email: string;
-    password: string;
-}
 
-interface SignUpProps{
-    urlType: string,
-    navigateType: string
-};
-
-const SignUp = ({urlType, navigateType}: SignUpProps) => {
+const SignUp = ({urlType, navigateType}: Authenticate) => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');

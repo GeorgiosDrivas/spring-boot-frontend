@@ -4,18 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../hooks/useHandleClick';
 import { useDispatch } from 'react-redux';
 import { storeID } from '../userSlice';
+import { Authenticate, User } from 'src/types/types';
 
-interface User {
-    email: string;
-    password: string;
-}
-
-interface LoginProps {
-    urlType: string,
-    navigationType: string
-}
-
-const Login = ({urlType, navigationType}: LoginProps) => {
+const Login = ({urlType, navigateType}: Authenticate) => {
 
     const dispatch = useDispatch();
     const [email, setEmail] = useState<string>('');
@@ -32,7 +23,7 @@ const Login = ({urlType, navigationType}: LoginProps) => {
             const {id, token} = response.data;
             localStorage.setItem('token', JSON.stringify(token))
             dispatch(storeID(id));
-            navigate(`/${navigationType}-dashboard`);            
+            navigate(`/${navigateType}-dashboard`);            
         } catch (error) {
             console.error('There was an error logging in the user!', error);
         }
@@ -64,7 +55,7 @@ const Login = ({urlType, navigationType}: LoginProps) => {
             </div>
         </form>
         <div className='d-flex'>
-            Don't have an account? <button className='normal_btn text-decoration-underline' onClick={() => handleClick("employer-sign-up")}>Sign up</button>
+            Don't have an account? <button className='normal_btn text-decoration-underline' onClick={() => handleClick(`${navigateType}-sign-up`)}>Sign up</button>
         </div>
         </div>
         <button className='position-absolute back-btn' onClick={() => handleClick("")}>Back</button>

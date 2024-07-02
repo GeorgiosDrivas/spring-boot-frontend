@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import EmployerProfile from './employerProfile';
+import EvaluationForm from './evaluationForm';
 
 interface EmployerData {
     companyName: string;
@@ -16,6 +17,7 @@ export default function EmployerDashboard() {
 
     const [data, setData] = useState<EmployerData | null>(null);
     const id = useSelector((state: RootState) => state.userSlice.id);
+    const navigate = useNavigate();
     
     useEffect(() => {
         const fetchUser = async () => {
@@ -33,7 +35,6 @@ export default function EmployerDashboard() {
         fetchUser();
     }, [id]);
 
-    const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -57,6 +58,7 @@ export default function EmployerDashboard() {
             </TabList>
             <TabPanel>
                 Your Evaluations
+                <EvaluationForm />
             </TabPanel>
             <TabPanel>
                 <EmployerProfile userId={id}/>
