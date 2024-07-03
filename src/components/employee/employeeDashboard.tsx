@@ -16,7 +16,7 @@ interface EmployeeData {
     password: string;
 }
 
-export default function EmployeeDashboard() {
+const EmployeeDashboard: React.FC = () => {
     const [data, setData] = useState<EmployeeData | null>(null);
     const id = useSelector((state: RootState) => state.userSlice.id);
     const navigate = useNavigate();
@@ -71,3 +71,5 @@ export default function EmployeeDashboard() {
         </>
     );
 }
+
+export default EmployeeDashboard;

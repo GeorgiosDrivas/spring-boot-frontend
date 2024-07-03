@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { HandleClick } from "../hooks/useHandleClick";
 
-const Landing = (): ReactElement => {
+const Landing: React.FC = () => {
     const handleClick = HandleClick();
 
     return (

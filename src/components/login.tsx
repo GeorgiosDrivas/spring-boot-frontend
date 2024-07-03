@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { storeID } from '../userSlice';
 import { Authenticate, User } from 'src/types/types';
 
-const Login = ({urlType, navigateType}: Authenticate) => {
+const Login: React.FC<Authenticate> = ({urlType, navigateType}) => {
 
     const dispatch = useDispatch();
     const [email, setEmail] = useState<string>('');
@@ -21,6 +21,7 @@ const Login = ({urlType, navigateType}: Authenticate) => {
         try {
             const response = await axios.post(`http://localhost:8080/api/${urlType}/login`, user);
             const {id, token} = response.data;
+            
             localStorage.setItem('token', JSON.stringify(token))
             dispatch(storeID(id));
             navigate(`/${navigateType}-dashboard`);            

@@ -7,7 +7,7 @@ import EmployeeDashboard from './components/employee/employeeDashboard';
 import EmployerDashboard from './components/employer/employerDashboard';
 import SignUp from './components/signUp';
 import Login from './components/login';
-import { clearTokenOnWindowClose } from 'src/utils/clearTokenOnWindowClose';
+import { clearTokenOnWindowClose } from './utils/clearTokenOnWindowClose';
 
 clearTokenOnWindowClose();
 

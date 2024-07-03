@@ -5,7 +5,7 @@ import { HandleClick } from '../hooks/useHandleClick';
 import { Authenticate, User } from 'src/types/types';
 
 
-const SignUp = ({urlType, navigateType}: Authenticate) => {
+const SignUp: React.FC<Authenticate> = ({urlType, navigateType}) => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -16,7 +16,7 @@ const SignUp = ({urlType, navigateType}: Authenticate) => {
         e.preventDefault();
         const user: User = { email, password};
         try {
-            const response = await axios.post(`http://localhost:8080/api/${urlType}/register`, user);
+            /* const response = */ await axios.post(`http://localhost:8080/api/${urlType}/register`, user);
             navigate(`/${navigateType}-login`);
         } catch (error) {
             console.error('There was an error registering the user!', error);

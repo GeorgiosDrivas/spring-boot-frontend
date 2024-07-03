@@ -1,4 +1,4 @@
-import { clearTokenOnWindowClose } from "../../App";
+import { clearTokenOnWindowClose } from "../../utils/clearTokenOnWindowClose";
 
 describe('useHandleClick', () => {
     beforeAll(() => {

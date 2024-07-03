@@ -13,7 +13,7 @@ interface EmployerData {
     field: string;
 }
 
-export default function EmployerDashboard() {
+const EmployerDashboard: React.FC = () => {
 
     const [data, setData] = useState<EmployerData | null>(null);
     const id = useSelector((state: RootState) => state.userSlice.id);
@@ -71,3 +71,5 @@ export default function EmployerDashboard() {
         </>
     );
 }
+
+export default EmployerDashboard;

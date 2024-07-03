@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-interface User {
+interface EmployerUser {
     companyName: string;
     location: string;
     field: string;
@@ -11,7 +11,7 @@ type PropsData = {
     userId: number;
 }
 
-const EmployerProfile = ({ userId }: PropsData) => {
+const EmployerProfile: React.FC<PropsData> = ({ userId }) => {
 
     const [companyName, setCompanyName] = useState(""); 
     const [location, setLocation] = useState(""); 
@@ -19,7 +19,7 @@ const EmployerProfile = ({ userId }: PropsData) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const user: User = { companyName, location, field };
+        const user: EmployerUser = { companyName, location, field };
         try {
             await axios.put(`http://localhost:8080/api/employers/${userId}/profile`, user);
         } catch (error) {
