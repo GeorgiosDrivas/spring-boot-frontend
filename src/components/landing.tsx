@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
 import { HandleClick } from "../hooks/useHandleClick";
+import React from 'react';
 
 const Landing: React.FC = () => {
     const handleClick = HandleClick();

@@ -1,19 +1,21 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 import EmployeeProfile from './employeeProfile';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import EmployeeEvaluations from './employeeEvaluations';
 
 interface EmployeeData {
-    currentEmployer: string;
-    email: string;
-    firstName: string;
     id: number;
+    email: string;
+    password: string;
+    firstName: string;
     lastName: string;
     location: string;
-    password: string;
+    title: string;
+    currentEmployer: string;
 }
 
 const EmployeeDashboard: React.FC = () => {
@@ -43,32 +45,47 @@ const EmployeeDashboard: React.FC = () => {
     }, [id]);
 
     return (
-        <>
-        <h1>{data ? `${data.firstName} ${data.lastName}` : ""}</h1>
+        <div className='main_wrapper'>
         <Tabs>
-            <TabList style={{listStyleType: "none"}}>
-                <Tab>
-                    <button>Evaluations</button>
-                </Tab>
-                <Tab>
-                    <button>Profile</button>
-                </Tab>
-                <Tab>
-                    <button>Settings</button>
-                </Tab>
-            </TabList>
-            <TabPanel>
-                Your Evaluations
-            </TabPanel>
-            <TabPanel>
-                <EmployeeProfile userId={id}/>
-            </TabPanel>
-            <TabPanel>
-                Your Settings
-                <button onClick={handleLogout}>log out</button>
-            </TabPanel>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className="col-4">
+                        <div className='mb-4 pb-2 border-bottom d-flex justify-content-evenly align-items-center'>
+                            <div className='img_wrap'></div>
+                            <div>
+                                <h1 className='name'>{data && data.firstName && data.lastName ? `${data.firstName} ${data.lastName}` : "Hello user"}</h1>
+                                <p className='title mb-0'>{data && data.title ? `${data.title}` : ""}</p>
+                                <p className='location'>{data && data.location ? `${data.location}` : ""}</p>
+                            </div>
+                        </div>
+                        <TabList style={{listStyleType: "none"}}>
+                            <Tab>
+                                <button className='option_btn mb-2'>Evaluations</button>
+                            </Tab>
+                            <Tab>
+                                <button className='option_btn mb-2'>Profile</button>
+                            </Tab>
+                            <Tab>
+                                <button className='option_btn'>Settings</button>
+                            </Tab>
+                        </TabList>
+                    </div>
+                    <div className="col-8">
+                        <TabPanel>
+                            <EmployeeEvaluations />
+                        </TabPanel>
+                        <TabPanel>
+                            <EmployeeProfile userId={id}/>
+                        </TabPanel>
+                        <TabPanel>
+                            Your Settings
+                            <button onClick={handleLogout}>log out</button>
+                        </TabPanel>
+                    </div>
+                </div>
+            </div>
         </Tabs>
-        </>
+        </div>
     );
 }
 
