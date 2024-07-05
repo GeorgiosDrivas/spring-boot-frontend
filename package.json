@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest",
+    "sass": "npx sass --watch src/styles/styles.sass:src/styles/styles.css",
     "coverage": "jest --coverage"
   },
   "dependencies": {

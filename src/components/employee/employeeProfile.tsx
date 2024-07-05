@@ -32,14 +32,15 @@ const EmployeeProfile: React.FC<PropsData> = ({ userId }) => {
 
     return (
         <div>
-            <p>Complete your profile information</p>
+            <h2 className='mb-0'>Profile information</h2>
+            <p className='mt-0'>Here your can change your profile's information.</p>
             <form className='d-flex flex-column' onSubmit={handleSubmit}>
-                <input type="text" required placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                <input type="text" required placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                <input type="text" required placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
-                <input type="text" required placeholder="Job title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <input type="text" required placeholder="Current employer" value={currentEmployer} onChange={(e) => setCurrentEmployer(e.target.value)} />
-                <button type='submit'>Submit</button>
+                <input className='edit_profile_input' type="text" required placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                <input className='edit_profile_input' type="text" required placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                <input className='edit_profile_input' type="text" required placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
+                <input className='edit_profile_input' type="text" required placeholder="Job title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <input className='edit_profile_input' type="text" required placeholder="Current employer" value={currentEmployer} onChange={(e) => setCurrentEmployer(e.target.value)} />
+                <button type='submit' className='edit_profile_btn'>Submit</button>
             </form>
         </div>
     );

@@ -1,5 +1,6 @@
 body {
   font-family: "Inter", sans-serif;
+  background-color: #EEEDEB;
 }
 
 .option-btn {
@@ -35,23 +36,73 @@ body {
 }
 
 .option_btn {
-  border: 1px solid #000;
+  border: none;
+  color: blue;
   background: transparent;
   padding: 2px 20px;
   width: 130px;
 }
+.option_btn:hover {
+  color: #000;
+}
 
 .name {
   font-weight: 500;
-  font-size: 30px;
+  font-size: 22px;
   text-align: end;
 }
 
 .img_wrap {
-  width: 70px;
-  height: 70px;
-  border-radius: 40px;
+  width: 90px;
+  height: 90px;
+  border-radius: 70px;
   background-color: #DEDCFF;
+}
+
+.options_wrap {
+  list-style-type: none;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: start;
+}
+
+.user_info {
+  background-color: #fff;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.content_wrap {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.edit_profile_btn {
+  width: 100px;
+  margin-top: 20px;
+  background-color: #009FBD;
+  border: none;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 25px;
+}
+.edit_profile_btn:hover {
+  color: #009F8D;
+  background-color: #fff;
+  border: 1px solid #009F8D;
+}
+
+.edit_profile_input {
+  margin-bottom: 10px;
+  width: 200px;
+  border: 1px solid #000;
+  padding: 5px 5px;
 }
 
 /*# sourceMappingURL=styles.css.map */
