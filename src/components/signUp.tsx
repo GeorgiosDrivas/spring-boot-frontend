@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../hooks/useHandleClick';
-import { Authenticate, User } from 'src/types/types';
+import { Authenticate, User } from '../types/types';
+import { clientApi } from '../api/client';
 
 
 const SignUp: React.FC<Authenticate> = ({urlType, navigateType}) => {
@@ -16,7 +16,7 @@ const SignUp: React.FC<Authenticate> = ({urlType, navigateType}) => {
         e.preventDefault();
         const user: User = { email, password};
         try {
-            /* const response = */ await axios.post(`http://localhost:8080/api/${urlType}/register`, user);
+            /* const response = */ await clientApi.post(`${urlType}/register`, user);
             navigate(`/${navigateType}-login`);
         } catch (error) {
             console.error('There was an error registering the user!', error);

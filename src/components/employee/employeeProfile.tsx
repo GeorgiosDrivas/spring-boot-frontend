@@ -34,7 +34,7 @@ const EmployeeProfile: React.FC<PropsData> = ({ userId }) => {
         <div>
             <h2 className='mb-0'>Profile information</h2>
             <p className='mt-0'>Here your can change your profile's information.</p>
-            <form className='d-flex flex-column' onSubmit={handleSubmit}>
+            <form className='d-flex flex-column justify-content-center align-items-center mt-4' onSubmit={handleSubmit}>
                 <input className='edit_profile_input' type="text" required placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                 <input className='edit_profile_input' type="text" required placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                 <input className='edit_profile_input' type="text" required placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />

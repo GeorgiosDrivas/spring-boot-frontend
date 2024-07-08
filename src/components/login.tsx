@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../hooks/useHandleClick';
 import { useDispatch } from 'react-redux';
 import { storeID } from '../userSlice';
-import { Authenticate, User } from 'src/types/types';
+import { Authenticate, User } from '../types/types';
+import { clientApi } from '../api/client';
 
 const Login: React.FC<Authenticate> = ({urlType, navigateType}) => {
 
@@ -19,7 +19,7 @@ const Login: React.FC<Authenticate> = ({urlType, navigateType}) => {
         const user: User = { email, password };
         
         try {
-            const response = await axios.post(`http://localhost:8080/api/${urlType}/login`, user);
+            const response = await clientApi.post(`${urlType}/login`, user);
             const {id, token} = response.data;
             
             localStorage.setItem('token', JSON.stringify(token))
