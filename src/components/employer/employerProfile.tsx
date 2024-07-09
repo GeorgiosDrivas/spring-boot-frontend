@@ -1,27 +1,18 @@
-import axios from 'axios';
 import { useState } from 'react';
-
-interface EmployerUser {
-    companyName: string;
-    location: string;
-    field: string;
-}
-
-type PropsData = {
-    userId: number;
-}
+import { EmployerData, PropsData } from '../../types/types';
+import { clientApi } from '../../api/client';
 
 const EmployerProfile: React.FC<PropsData> = ({ userId }) => {
 
-    const [companyName, setCompanyName] = useState(""); 
-    const [location, setLocation] = useState(""); 
-    const [field, setField] = useState(""); 
+    const [companyName, setCompanyName] = useState<string>(""); 
+    const [location, setLocation] = useState<string>(""); 
+    const [field, setField] = useState<string>(""); 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const user: EmployerUser = { companyName, location, field };
+        const user: EmployerData = { companyName, location, field };
         try {
-            await axios.put(`http://localhost:8080/api/employers/${userId}/profile`, user);
+            await clientApi.put(`employers/${userId}/profile`, user);
         } catch (error) {
             alert('There was an error updating the profile!');
         }

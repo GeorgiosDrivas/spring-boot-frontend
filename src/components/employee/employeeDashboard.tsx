@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -6,20 +5,11 @@ import { RootState } from 'src/store';
 import EmployeeProfile from './employeeProfile';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import EmployeeEvaluations from './employeeEvaluations';
-
-interface EmployeeData {
-    id: number;
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    location: string;
-    title: string;
-    currentEmployer: string;
-}
+import { EmployeeCredData } from '../../types/types';
+import { clientApi } from '../../api/client';
 
 const EmployeeDashboard: React.FC = () => {
-    const [data, setData] = useState<EmployeeData | null>(null);
+    const [data, setData] = useState<EmployeeCredData | null>(null);
     const id = useSelector((state: RootState) => state.userSlice.id);
     const navigate = useNavigate();
 
@@ -31,7 +21,7 @@ const EmployeeDashboard: React.FC = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/employees/${id}`);
+                const response = await clientApi.get(`employees/${id}`);
                 if (response.status !== 200) {
                     throw new Error('Failed to fetch user data');
                 }
@@ -43,7 +33,7 @@ const EmployeeDashboard: React.FC = () => {
 
         fetchUser();
     }, [id]);
-
+    console.log(id);
     return (
         <div className='main_wrapper'>
         <Tabs>
@@ -73,7 +63,7 @@ const EmployeeDashboard: React.FC = () => {
                     <div className="col-9">
                         <div className='content_wrap'>
                             <TabPanel>
-                                <EmployeeEvaluations />
+                                <EmployeeEvaluations employeeId={id}/>
                             </TabPanel>
                             <TabPanel>
                                 <EmployeeProfile userId={id}/>

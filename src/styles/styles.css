@@ -104,4 +104,20 @@ body {
   padding: 5px 5px;
 }
 
+.evaluation_title {
+  font-size: 25px;
+}
+
+.evaluation_employer {
+  font-size: 20px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.single_evaluation {
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 25px;
+}
+
 /*# sourceMappingURL=styles.css.map */

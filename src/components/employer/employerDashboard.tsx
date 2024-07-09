@@ -6,12 +6,8 @@ import { RootState } from 'src/store';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import EmployerProfile from './employerProfile';
 import EvaluationForm from './evaluationForm';
-
-interface EmployerData {
-    companyName: string;
-    location: string;
-    field: string;
-}
+import { EmployerData } from '../../types/types';
+import { clientApi } from '../../api/client';
 
 const EmployerDashboard: React.FC = () => {
 
@@ -22,7 +18,7 @@ const EmployerDashboard: React.FC = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/employers/${id}`);
+                const response = await clientApi.get(`employers/${id}`);
                 if (response.status !== 200) {
                     throw new Error('Failed to fetch user data');
                 }
@@ -42,33 +38,48 @@ const EmployerDashboard: React.FC = () => {
     }
 
     return (
-        <>
-        <h1>{data ? `${data.companyName}` : ""}</h1>
+        <div className='main_wrapper'>
         <Tabs>
-            <TabList style={{listStyleType: "none"}}>
-                <Tab>
-                    <button>Evaluations</button>
-                </Tab>
-                <Tab>
-                    <button>Profile</button>
-                </Tab>
-                <Tab>
-                    <button>Settings</button>
-                </Tab>
-            </TabList>
-            <TabPanel>
-                Your Evaluations
-                <EvaluationForm />
-            </TabPanel>
-            <TabPanel>
-                <EmployerProfile userId={id}/>
-            </TabPanel>
-            <TabPanel>
-                Your Settings
-                <button onClick={handleLogout}>log out</button>
-            </TabPanel>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className="col-3">
+                        <div className='mb-4 pb-2 d-flex flex-column align-items-center user_info'>
+                            <div className='img_wrap align-self-center mb-3'></div>
+                            <div>
+                                <h1 className='name'>{data ? `${data.companyName}` : ""}</h1>
+                                <p className='location'>{data && data.location ? `${data.location}` : ""}</p>
+                            </div>
+                        </div>
+                        <TabList className="options_wrap">
+                            <Tab>
+                                <button className='option_btn mb-2 text-start p-0'>Evaluations</button>
+                            </Tab>
+                            <Tab>
+                                <button className='option_btn mb-2 text-start p-0'>Profile</button>
+                            </Tab>
+                            <Tab>
+                                <button className='option_btn text-start p-0'>Settings</button>
+                            </Tab>
+                        </TabList>
+                    </div>
+                    <div className="col-9">
+                        <div className='content_wrap'>
+                            <TabPanel>
+                                <EvaluationForm employerName={data ? data.companyName : "Unknown Employer"}/>
+                            </TabPanel>
+                            <TabPanel>
+                                <EmployerProfile userId={id}/>
+                            </TabPanel>
+                            <TabPanel>
+                                Your Settings
+                                <button onClick={handleLogout}>log out</button>
+                            </TabPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Tabs>
-        </>
+        </div>
     );
 }
 

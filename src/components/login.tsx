@@ -14,7 +14,7 @@ const Login: React.FC<Authenticate> = ({urlType, navigateType}) => {
     const navigate = useNavigate();
     const handleClick = HandleClick();
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
         const user: User = { email, password };
         
