@@ -12,11 +12,12 @@ const SignUp: React.FC<Authenticate> = ({urlType, navigateType}) => {
     const navigate = useNavigate();
     const handleClick = HandleClick();
 
+    // Checks if user exists in back-end ? redirect to login : do nothing. ( Should display a message)
     const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
         const user: User = { email, password};
         try {
-            /* const response = */ await clientApi.post(`${urlType}/register`, user);
+            await clientApi.post(`${urlType}/register`, user);
             navigate(`/${navigateType}-login`);
         } catch (error) {
             console.error('There was an error registering the user!', error);

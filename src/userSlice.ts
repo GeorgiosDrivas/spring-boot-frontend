@@ -1,23 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface CounterState {
-  id: number
+export interface UserState {
+  id: number;
+  data: {
+    firstName?: string;
+    lastName?: string;
+    title?: string;
+    location?: string;
+    [key: string]: any;
+  };
 }
 
-const initialState: CounterState = {
+const initialState: UserState = {
   id: 0,
+  data: {}
 }
 
 export const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
-    storeID: (state, action) => {
-        state.id = action.payload
+    storeID: (state, action: PayloadAction<number>) => {
+        state.id = action.payload;
+    },
+    storeData: (state, action: PayloadAction<object>) => {
+      state.data = action.payload;
     }
   },
 })
 
-export const { storeID } = userSlice.actions
+export const { storeID, storeData } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

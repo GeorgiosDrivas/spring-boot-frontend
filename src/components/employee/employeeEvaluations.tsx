@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { clientApi } from "../../api/client";
 
-// Define the Evaluation interface
 interface Evaluation {
   id: number;
   title: string;
@@ -10,29 +9,34 @@ interface Evaluation {
   employeeId: number;
 }
 
-const EmployeeEvaluations: React.FC<{ employeeId: number }> = ({ employeeId }) => {
+const EmployeeEvaluations: React.FC<{ employeeId: number }> = ({
+  employeeId,
+}) => {
   const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch evaluations using the ID of the employee
   useEffect(() => {
     const fetchEvaluations = async () => {
       try {
-        const response = await axios.get<Evaluation[]>(`http://localhost:8080/api/employees/${employeeId}/evaluations`);
+        const response = await clientApi.get<Evaluation[]>(
+          `employees/${employeeId}/evaluations`
+        );
         setEvaluations(response.data);
       } catch (error) {
-        setError('Error fetching evaluations. Please try again later.');
+        setError("Error fetching evaluations. Please try again later.");
       } finally {
         setIsLoading(false);
       }
     };
-  
+
     fetchEvaluations();
-  }, [employeeId]);  
+  }, [employeeId]);
 
   return (
-    <div className='evaluations_wrap'>
-      <h2 className='mb-5'>Your evaluations</h2>
+    <div className="evaluations_wrap">
+      <h2 className="mb-5">Your evaluations</h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -40,9 +44,11 @@ const EmployeeEvaluations: React.FC<{ employeeId: number }> = ({ employeeId }) =
       ) : (
         <>
           {evaluations.map((evaluation) => (
-            <div key={evaluation.id} className='single_evaluation mb-5'>
-              <p className='evaluation_title mb-0 fw-bold'>{evaluation.title}</p>
-              <p className='evaluation_employer'>{evaluation.employerName}</p>
+            <div key={evaluation.id} className="single_evaluation mb-5">
+              <p className="evaluation_title mb-0 fw-bold">
+                {evaluation.title}
+              </p>
+              <p className="evaluation_employer">{evaluation.employerName}</p>
               <p>{evaluation.content}</p>
             </div>
           ))}
