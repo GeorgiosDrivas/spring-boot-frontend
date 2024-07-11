@@ -6,7 +6,7 @@ import { storeID } from "../userSlice";
 import { Authenticate, User } from "../types/types";
 import { clientApi } from "../api/client";
 
-const Login: React.FC<Authenticate> = ({ urlType, navigateType }) => {
+const Login= ({ urlType, navigateType }: Authenticate) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -20,8 +20,6 @@ const Login: React.FC<Authenticate> = ({ urlType, navigateType }) => {
   };
 
   // Handles login button click. Checks if credentials are true
-  // ? redirect to dashboard and stores id in REDUX
-  // : do nothing (Should display a message)
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     const user: User = { email, password };
@@ -67,6 +65,7 @@ const Login: React.FC<Authenticate> = ({ urlType, navigateType }) => {
             </button>
           </div>
         </form>
+        {wrongCreds && <p>Wrong credentials. Please try again.</p>}
         <div className="d-flex">
           Don't have an account?{" "}
           <button
@@ -83,7 +82,6 @@ const Login: React.FC<Authenticate> = ({ urlType, navigateType }) => {
       >
         Back
       </button>
-      {wrongCreds && <p>Wrong credentials. Please try again.</p>}
     </>
   );
 };

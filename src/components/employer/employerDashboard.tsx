@@ -6,12 +6,12 @@ import EvaluationForm from "./evaluationForm";
 import { useHandleLogout } from "../../hooks/useHandleLogout";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
 
-const EmployerDashboard: React.FC = () => {
+const EmployerDashboard = () => {
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
   const handleLogout = useHandleLogout();
 
-  useDisplayUser({ linkUrl: "employees" });
+  useDisplayUser({ linkUrl: "employers" });
 
   return (
     <div className="main_wrapper">

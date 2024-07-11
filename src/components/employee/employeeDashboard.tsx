@@ -7,7 +7,7 @@ import EmployeeEvaluations from "./employeeEvaluations";
 import { useHandleLogout } from "../../hooks/useHandleLogout";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
 
-const EmployeeDashboard: React.FC = () => {
+const EmployeeDashboard = () => {
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
   const handleLogout = useHandleLogout();

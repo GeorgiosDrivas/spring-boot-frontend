@@ -1,7 +1,6 @@
 import { HandleClick } from "../hooks/useHandleClick";
-import React from 'react';
 
-const Landing: React.FC = () => {
+const Landing = () => {
     const handleClick = HandleClick();
 
     return (

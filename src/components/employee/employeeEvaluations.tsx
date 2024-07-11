@@ -9,9 +9,9 @@ interface Evaluation {
   employeeId: number;
 }
 
-const EmployeeEvaluations: React.FC<{ employeeId: number }> = ({
-  employeeId,
-}) => {
+const EmployeeEvaluations = ({
+  employeeId
+}: {employeeId: number}) => {
   const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { clientApi } from "../../api/client";
 
-interface Name {
-  employerName: string;
-}
-
-const EvaluationForm = ({ employerName }: Name) => {
+const EvaluationForm = ({ employerName }: {employerName: string}) => {
   const [employeeId, setEmployeeId] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -13,7 +9,6 @@ const EvaluationForm = ({ employerName }: Name) => {
   // Creates an evaluation for an employee using the employee's ID
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Maybe change it to enum?????
     const evaluation = { title, content, employerName };
 
     try {

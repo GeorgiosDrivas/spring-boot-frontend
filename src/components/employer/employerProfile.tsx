@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { EmployerData, PropsData } from "../../types/types";
+import { EmployerData } from "../../types/types";
 import { clientApi } from "../../api/client";
 
-const EmployerProfile: React.FC<PropsData> = ({ userId }) => {
+const EmployerProfile = ({ userId }: {userId: number}) => {
   const [companyName, setCompanyName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [field, setField] = useState<string>("");

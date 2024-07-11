@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { EmployeeData, PropsData } from "../../types/types";
+import { EmployeeData } from "../../types/types";
 import { clientApi } from "../../api/client";
 
-const EmployeeProfile: React.FC<PropsData> = ({ userId }) => {
+const EmployeeProfile = ({ userId }: {userId: number}) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
@@ -11,6 +11,7 @@ const EmployeeProfile: React.FC<PropsData> = ({ userId }) => {
 
   // Update user's profile
   const handleSubmit = async () => {
+
     const user: EmployeeData = {
       firstName,
       lastName,
@@ -18,6 +19,7 @@ const EmployeeProfile: React.FC<PropsData> = ({ userId }) => {
       title,
       currentEmployer,
     };
+
     try {
       await clientApi.put(`employees/${userId}/profile`, user);
     } catch (error) {

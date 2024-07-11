@@ -4,11 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { storeData } from '../userSlice';
 
-interface PropsData {
-    linkUrl: string;
-}
-
-export const useDisplayUser = ({ linkUrl }: PropsData) => {
+export const useDisplayUser = ({ linkUrl}: {linkUrl: string}) => {
     const dispatch = useDispatch();
     const id = useSelector((state: RootState) => state.userSlice.id);
 

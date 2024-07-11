@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoutes from './utils/privateRoutes';
 import PublicRoutes from './utils/publicRoutes';
@@ -11,7 +10,7 @@ import { clearTokenOnWindowClose } from './utils/clearTokenOnWindowClose';
 
 clearTokenOnWindowClose();
 
-const App: React.FC = () => {
+const App = () => {
     return (
         <Router>
             <Routes>
