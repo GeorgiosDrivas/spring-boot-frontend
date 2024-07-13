@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { clientApi } from '../api/client';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
-import { storeData } from '../userSlice';
+import { RootState } from '../store/store';
+import { storeData } from '../store/userSlice';
 
 export const useDisplayUser = ({ linkUrl}: {linkUrl: string}) => {
     const dispatch = useDispatch();

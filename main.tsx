@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import { store } from './store';
+import { store } from './src/store/store';
 import { Provider } from 'react-redux';
-import './styles/styles.css';
+import './src/styles/styles.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

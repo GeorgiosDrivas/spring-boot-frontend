@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
-import { RootState } from "src/store";
+import { RootState } from "../../store/store";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import EmployerProfile from "./employerProfile";
 import EvaluationForm from "./evaluationForm";
 import { useHandleLogout } from "../../hooks/useHandleLogout";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
+import { EmployerSearchComp } from "./employerSearchComp";
 
 const EmployerDashboard = () => {
   const data = useSelector((state: RootState) => state.userSlice.data);
@@ -40,6 +41,11 @@ const EmployerDashboard = () => {
                   </button>
                 </Tab>
                 <Tab>
+                  <button className="option_btn mb-2 text-start p-0">
+                    Search
+                  </button>
+                </Tab>
+                <Tab>
                   <button className="option_btn text-start p-0">
                     Settings
                   </button>
@@ -55,6 +61,9 @@ const EmployerDashboard = () => {
                 </TabPanel>
                 <TabPanel>
                   <EmployerProfile userId={id} />
+                </TabPanel>
+                <TabPanel>
+                  <EmployerSearchComp />
                 </TabPanel>
                 <TabPanel>
                   Your Settings

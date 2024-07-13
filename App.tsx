@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PrivateRoutes from './utils/privateRoutes';
-import PublicRoutes from './utils/publicRoutes';
-import Landing from './components/landing';
-import EmployeeDashboard from './components/employee/employeeDashboard';
-import EmployerDashboard from './components/employer/employerDashboard';
-import SignUp from './components/signUp';
-import Login from './components/login';
-import { clearTokenOnWindowClose } from './utils/clearTokenOnWindowClose';
+import PrivateRoutes from './src/utils/privateRoutes';
+import PublicRoutes from './src/utils/publicRoutes';
+import Landing from './src/components/landing';
+import EmployeeDashboard from './src/components/employee/employeeDashboard';
+import EmployerDashboard from './src/components/employer/employerDashboard';
+import SignUp from './src/components/signUp';
+import Login from './src/components/login';
+import { clearTokenOnWindowClose } from './src/utils/clearTokenOnWindowClose';
 
 clearTokenOnWindowClose();
 

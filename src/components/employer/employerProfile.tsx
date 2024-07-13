@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { EmployerData } from "../../types/types";
 import { clientApi } from "../../api/client";
+import { HandleChange } from "../../utils/handleStateChange";
 
 const EmployerProfile = ({ userId }: {userId: number}) => {
   const [companyName, setCompanyName] = useState<string>("");
@@ -21,26 +22,34 @@ const EmployerProfile = ({ userId }: {userId: number}) => {
   return (
     <div>
       <p>Complete your profile information</p>
-      <form className="d-flex flex-column" onSubmit={handleSubmit}>
+      <form
+        className="d-flex flex-column justify-content-center align-items-center mt-4"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
+          className="edit_profile_input"
           placeholder="Compay name"
           value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
+          onChange={HandleChange(setCompanyName)}
         />
         <input
           type="text"
+          className="edit_profile_input"
           placeholder="Location"
           value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          onChange={HandleChange(setLocation)}
         />
         <input
           type="text"
+          className="edit_profile_input"
           placeholder="Field"
           value={field}
-          onChange={(e) => setField(e.target.value)}
+          onChange={HandleChange(setField)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className="edit_profile_btn">
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { EmployeeData } from "../../types/types";
 import { clientApi } from "../../api/client";
+import {HandleChange} from '../../utils/handleStateChange';
 
 const EmployeeProfile = ({ userId }: {userId: number}) => {
   const [firstName, setFirstName] = useState<string>("");
@@ -41,7 +42,7 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
           required
           placeholder="First name"
           value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          onChange={HandleChange(setFirstName)}
         />
         <input
           className="edit_profile_input"
@@ -49,7 +50,7 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
           required
           placeholder="Last name"
           value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          onChange={HandleChange(setLastName)}
         />
         <input
           className="edit_profile_input"
@@ -57,7 +58,7 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
           required
           placeholder="Location"
           value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          onChange={HandleChange(setLocation)}
         />
         <input
           className="edit_profile_input"
@@ -65,7 +66,7 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
           required
           placeholder="Job title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={HandleChange(setTitle)}
         />
         <input
           className="edit_profile_input"
@@ -73,7 +74,7 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
           required
           placeholder="Current employer"
           value={currentEmployer}
-          onChange={(e) => setCurrentEmployer(e.target.value)}
+          onChange={HandleChange(setCurrentEmployer)}
         />
         <button type="submit" className="edit_profile_btn">
           Submit

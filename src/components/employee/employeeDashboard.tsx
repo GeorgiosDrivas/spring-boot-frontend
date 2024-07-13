@@ -1,16 +1,14 @@
-import React from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useSelector } from "react-redux";
-import { RootState } from "src/store";
+import { RootState } from "../../store/store";
 import EmployeeProfile from "./employeeProfile";
 import EmployeeEvaluations from "./employeeEvaluations";
-import { useHandleLogout } from "../../hooks/useHandleLogout";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
+import { EmployeeSettings } from "./employeeSettings";
 
 const EmployeeDashboard = () => {
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
-  const handleLogout = useHandleLogout();
 
   useDisplayUser({ linkUrl: "employees" });
 
@@ -23,13 +21,13 @@ const EmployeeDashboard = () => {
               <div className="mb-4 pb-2 d-flex flex-column align-items-center user_info">
                 <div className="img_wrap align-self-center mb-3"></div>
                 <div>
-                  <h1 className="name">
+                  <h1 className="name text-start">
                     {data && data.firstName && data.lastName
                       ? `${data.firstName} ${data.lastName}`
                       : "Hello user"}
                   </h1>
                   <p className="title mb-0">
-                    {data && data.title ? `${data.title}` : ""}
+                    {data && data.title && data.currentEmployer ? `${data.title}, ${data.currentEmployer}` : ""}
                   </p>
                   <p className="location">
                     {data && data.location ? `${data.location}` : ""}
@@ -63,8 +61,7 @@ const EmployeeDashboard = () => {
                   <EmployeeProfile userId={id} />
                 </TabPanel>
                 <TabPanel>
-                  Your Settings
-                  <button onClick={handleLogout}>log out</button>
+                  <EmployeeSettings />
                 </TabPanel>
               </div>
             </div>

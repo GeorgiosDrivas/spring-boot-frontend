@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { clientApi } from "../../api/client";
+import { HandleChange } from "../../utils/handleStateChange";
 
 const EvaluationForm = ({ employerName }: {employerName: string}) => {
   const [employeeId, setEmployeeId] = useState<string>("");
@@ -38,21 +39,21 @@ const EvaluationForm = ({ employerName }: {employerName: string}) => {
             type="number"
             placeholder="Employee's ValueMe ID"
             value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
+            onChange={HandleChange(setEmployeeId)}
           />
           <input
             className="edit_profile_input"
             type="text"
             placeholder="Evaluation's title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={HandleChange(setTitle)}
           />
           <input
             className="edit_profile_input"
             type="textarea"
             placeholder="Evaluation's content"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={HandleChange(setContent)}
           />
           <button type="submit" className="edit_profile_btn">
             Submit
