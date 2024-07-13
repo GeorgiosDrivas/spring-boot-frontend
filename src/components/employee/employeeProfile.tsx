@@ -30,7 +30,7 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
 
   return (
     <div>
-      <h2 className="mb-0">Profile information</h2>
+      <h1 className="mb-0">Profile information</h1>
       <p className="mt-0">Here you can change your profile's information.</p>
       <form
         className="d-flex flex-column justify-content-center align-items-center mt-4"

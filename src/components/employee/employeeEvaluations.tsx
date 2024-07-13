@@ -36,7 +36,7 @@ const EmployeeEvaluations = ({
 
   return (
     <div className="evaluations_wrap">
-      <h2 className="mb-5">Your evaluations</h2>
+      <h1 className="mb-5">Your evaluations</h1>
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (

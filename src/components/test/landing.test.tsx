@@ -1,8 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import Landing from '../components/landing';
+import Landing from '../landing';
 
 describe("Landing component tests", () => {
   test("Should always return true", () => {
