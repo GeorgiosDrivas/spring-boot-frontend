@@ -1,9 +1,13 @@
 import { ChangeEvent } from "react";
 import { HandleChange } from "../handleStateChange";
+const mockValueSetter = jest.fn();
+
+afterEach(() => {
+  mockValueSetter.mockReset();
+});
 
 test("HandleChange calls valueSetter with the correct value", () => {
   // Mock the valueSetter function
-  const mockValueSetter = jest.fn();
 
   // Create the change handler with the mock function
   const handleChange = HandleChange(mockValueSetter);
