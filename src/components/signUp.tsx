@@ -8,7 +8,7 @@ import { clientApi } from '../api/client';
 const SignUp = ({
   urlType,
   navigateType,
-}: Authenticate) => {
+}: Readonly<Authenticate>) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();

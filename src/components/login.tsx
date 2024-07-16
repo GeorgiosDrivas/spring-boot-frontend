@@ -6,7 +6,7 @@ import { storeID } from "../store/userSlice";
 import { Authenticate, User } from "../types/types";
 import { clientApi } from "../api/client";
 
-const Login= ({ urlType, navigateType }: Authenticate) => {
+const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");

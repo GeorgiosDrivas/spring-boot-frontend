@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { storeData } from '../store/userSlice';
 
-export const useDisplayUser = ({ linkUrl}: {linkUrl: string}) => {
+export const useDisplayUser = ({ linkUrl}: {linkUrl: Readonly<string>}) => {
     const dispatch = useDispatch();
     const id = useSelector((state: RootState) => state.userSlice.id);
 
