@@ -12,6 +12,7 @@ export interface EmployerData {
   companyName: string;
   location: string;
   field: string;
+  profileImagePath: string | undefined;
 }
 
 export interface EmployeeData {
@@ -20,10 +21,30 @@ export interface EmployeeData {
   location: string;
   title: string;
   currentEmployer: string;
+  profileImagePath: string | undefined;
 }
 
 export interface EmployeeCredData extends EmployeeData {
   id: number;
   email: string;
   password: string;
+}
+
+export interface Evaluation {
+  id: number;
+  title: string;
+  content: string;
+  employerName: string;
+  employerProfileImage: string;
+  employerId: number;
+  employeeId: number;
+}
+
+export interface Employee {
+  id: number;
+  firstName: string;
+  lastName: string;
+  title: string;
+  location: string;
+  profileImagePath: string;
 }

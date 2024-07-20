@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { clientApi } from "../../api/client";
-
-interface Evaluation {
-  id: number;
-  title: string;
-  content: string;
-  employerName: string;
-  employeeId: number;
-}
+import { Evaluation } from "../../types/types";
 
 const EmployeeEvaluations = ({
   employeeId
@@ -44,11 +37,18 @@ const EmployeeEvaluations = ({
       ) : (
         <>
           {evaluations.map((evaluation) => (
-            <div key={evaluation.id} className="single_evaluation mb-5">
+            <div key={evaluation.id} className="single_evaluation mb-4">
+              <div className="d-flex align-items-center mb-3">
+                <img
+                  src={`http://localhost:8080/uploads/${evaluation.employerId}_${evaluation.employerProfileImage}`}
+                  alt="Profile Image"
+                  className="employer_evaluation_img"
+                />
+                <p className="evaluation_employer ms-3 mt-0 mb-0">{evaluation.employerName}</p>
+              </div>
               <p className="evaluation_title mb-0 fw-bold">
                 {evaluation.title}
               </p>
-              <p className="evaluation_employer">{evaluation.employerName}</p>
               <p>{evaluation.content}</p>
             </div>
           ))}

@@ -7,6 +7,7 @@ interface UserState {
     lastName?: string;
     title?: string;
     location?: string;
+    profileImagePath?: string;
     [key: string]: any;
   };
 }

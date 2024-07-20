@@ -2,25 +2,44 @@ import { useState } from "react";
 import { clientApi } from "../../api/client";
 import { HandleChange } from "../../utils/handleStateChange";
 
-const EvaluationForm = ({ employerName }: {employerName: string}) => {
+const EvaluationForm = ({
+  employerName,
+  employerProfileImage,
+  employerId,
+}: {
+  employerName: string;
+  employerProfileImage: string | undefined;
+  employerId: number;
+}) => {
   const [employeeId, setEmployeeId] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   // Creates an evaluation for an employee using the employee's ID
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const evaluation = { title, content, employerName };
+    const evaluation = {
+      title,
+      content,
+      employerName,
+      employerProfileImage,
+      employerId,
+    };
 
     try {
       const response = await clientApi.post(
         `employees/${employeeId}/add-evaluations`,
         evaluation
       );
-      // console.log('Evaluation submitted successfully:', response.data);
+      setSuccessMessage("Your evaluation was submitted successfully!");
     } catch (error) {
       console.error("There was an error submitting the evaluation:", error);
     }
+    
+    setEmployeeId("");
+    setTitle("");
+    setContent("");
   };
 
   return (
@@ -55,6 +74,11 @@ const EvaluationForm = ({ employerName }: {employerName: string}) => {
             value={content}
             onChange={HandleChange(setContent)}
           />
+          {
+            successMessage !== "" && (
+              <p>{successMessage}</p>
+            )
+          }
           <button type="submit" className="edit_profile_btn">
             Submit
           </button>

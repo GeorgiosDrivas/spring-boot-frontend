@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { EmployeeData } from "../../types/types";
 import { clientApi } from "../../api/client";
-import {HandleChange} from '../../utils/handleStateChange';
+import { HandleChange } from "../../utils/handleStateChange";
 
-const EmployeeProfile = ({ userId }: {userId: number}) => {
+const EmployeeProfile = ({ userId }: { userId: number }) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [currentEmployer, setCurrentEmployer] = useState<string>("");
+  const [imageData, setImageData] = useState<FormData | null>(null);
+  const [imageName, setImageName] = useState<string>("");
 
-  // Update user's profile
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
 
     const user: EmployeeData = {
       firstName,
@@ -19,12 +21,45 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
       location,
       title,
       currentEmployer,
+      profileImagePath: imageName,
     };
 
     try {
+      if (imageData) {
+        await uploadImage(imageData);
+      }
+
       await clientApi.put(`employees/${userId}/profile`, user);
+      setCurrentEmployer("");
+      setFirstName("");
+      setLastName("");
+      setLocation("");
+      setTitle("");
+      setImageData(null);
+      setImageName("");
+
+      alert("Profile updated successfully!");
     } catch (error) {
       alert("There was an error updating the profile!");
+    }
+  };
+
+  const handleUploadClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imageData = new FormData();
+      imageData.append("imageFile", file);
+      setImageData(imageData);
+      setImageName(file.name);
+    }
+  };
+
+  const uploadImage = async (imageData: FormData) => {
+    try {
+      await clientApi.post(`employees/${userId}/image`, imageData);
+    } catch (error) {
+      console.log(error);
+      throw new Error("Image upload failed");
     }
   };
 
@@ -76,7 +111,11 @@ const EmployeeProfile = ({ userId }: {userId: number}) => {
           value={currentEmployer}
           onChange={HandleChange(setCurrentEmployer)}
         />
-        <button type="submit" className="edit_profile_btn">
+        <input type="file" accept="image/*" onChange={handleUploadClick} />
+        <button
+          type="submit"
+          className="edit_profile_btn"
+        >
           Submit
         </button>
       </form>

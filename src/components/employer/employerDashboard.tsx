@@ -3,14 +3,14 @@ import { RootState } from "../../store/store";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import EmployerProfile from "./employerProfile";
 import EvaluationForm from "./evaluationForm";
-import { useHandleLogout } from "../../hooks/useHandleLogout";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
 import { EmployerSearchComp } from "./employerSearchComp";
+import { EmployerSettings } from "./employerSettings";
 
 const EmployerDashboard = () => {
+  
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
-  const handleLogout = useHandleLogout();
 
   useDisplayUser({ linkUrl: "employers" });
 
@@ -21,7 +21,13 @@ const EmployerDashboard = () => {
           <div className="row">
             <div className="col-3">
               <div className="mb-4 pb-2 d-flex flex-column align-items-center user_info">
-                <div className="img_wrap align-self-center mb-3"></div>
+                <div className="img_wrap align-self-center mb-3 position-relative overflow-hidden">
+                  <img
+                    src={`http://localhost:8080/uploads/${id}_${data.profileImagePath}`}
+                    alt="Profile photo"
+                    className="position-absolute w-100 h-100"
+                  />
+                </div>
                 <div>
                   <h1 className="name">{data ? `${data.companyName}` : ""}</h1>
                   <p className="location">
@@ -57,6 +63,10 @@ const EmployerDashboard = () => {
                 <TabPanel>
                   <EvaluationForm
                     employerName={data ? data.companyName : "Unknown Employer"}
+                    employerProfileImage={
+                      data ? data.profileImagePath : "Unknown Employer"
+                    }
+                    employerId={id}
                   />
                 </TabPanel>
                 <TabPanel>
@@ -66,8 +76,7 @@ const EmployerDashboard = () => {
                   <EmployerSearchComp />
                 </TabPanel>
                 <TabPanel>
-                  Your Settings
-                  <button onClick={handleLogout}>log out</button>
+                  <EmployerSettings />
                 </TabPanel>
               </div>
             </div>

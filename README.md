@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# Employee Evaluation Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Employee Evaluation Web App is a comprehensive platform designed to streamline the process of writing and managing employee evaluations. This web application serves as a bridge between employees and employers, facilitating a transparent and efficient evaluation process.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In today's fast-paced work environment, it's crucial for both employees and employers to have a reliable system for performance evaluations. The Employee Evaluation Web App offers a user-friendly interface for creating, managing, and viewing evaluations. Whether you are an employee looking to showcase your performance history or an employer aiming to provide structured feedback, this app caters to your needs.
 
-## Expanding the ESLint configuration
+## Employee
+As an employee, you can:
+- **Create Your Profile:** Set up your profile with professional details.
+- **Gather Evaluations:** Collect evaluations from past companies.
+- **Showcase Performance:** Help recruiters and future employers view your evaluations.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Employer
+- **Create and Verify Accounts:** Establish and verify your company's account.
+- **Write Evaluations:** Provide detailed evaluations of your employees.
 
-- Configure the top-level `parserOptions` property like this:
+## Technology
+This is a WIP full stack project.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Front-End
+- ReactJS
+- ReduxJS
+- TypeScript
+- SASS
+- Bootstrap
+- Jest
+- React Testing Library
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Back-End & Database
+- Java Spring Boot
+- MySQL
+
+Back-end is stored in a different Github repository for management reasons. You can find it [here](https://github.com/GeorgiosDrivas/spring-boot-backend).

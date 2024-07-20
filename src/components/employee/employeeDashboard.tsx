@@ -19,7 +19,13 @@ const EmployeeDashboard = () => {
           <div className="row">
             <div className="col-3">
               <div className="mb-4 pb-2 d-flex flex-column align-items-center user_info">
-                <div className="img_wrap align-self-center mb-3"></div>
+                <div className="img_wrap align-self-center mb-3 position-relative overflow-hidden">
+                  <img
+                    src={`http://localhost:8080/uploads/${id}_${data.profileImagePath}`}
+                    alt="Profile photo"
+                    className="position-absolute w-100 h-100"
+                  />
+                </div>
                 <div>
                   <h1 className="name text-start">
                     {data && data.firstName && data.lastName
@@ -27,7 +33,9 @@ const EmployeeDashboard = () => {
                       : "Hello user"}
                   </h1>
                   <p className="title mb-0">
-                    {data && data.title && data.currentEmployer ? `${data.title}, ${data.currentEmployer}` : ""}
+                    {data && data.title && data.currentEmployer
+                      ? `${data.title}, ${data.currentEmployer}`
+                      : ""}
                   </p>
                   <p className="location">
                     {data && data.location ? `${data.location}` : ""}
