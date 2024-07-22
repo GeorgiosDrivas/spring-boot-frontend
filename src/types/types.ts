@@ -1,6 +1,12 @@
 export interface User {
   email: string;
   password: string;
+  firstName?: string;
+  lastName?: string;
+  currentEmployer?: string;
+  title?: string; 
+  companyName?: string;
+  field?: string;
 }
 
 export interface Authenticate {

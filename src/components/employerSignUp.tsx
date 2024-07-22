@@ -5,22 +5,22 @@ import { Authenticate, User } from '../types/types';
 import { clientApi } from '../api/client';
 
 
-const SignUp = ({
-  urlType,
-  navigateType,
-}: Readonly<Authenticate>) => {
+const EmployerSignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [companyName, setCompanyName] = useState<string>("");
+  const [field, setField] = useState<string>("");
+
   const navigate = useNavigate();
   const handleClick = HandleClick();
 
   // Checks if user exists in back-end ? redirect to login : do nothing.
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-    const user: User = { email, password };
+    const user: User = { email, password, companyName, field };
     try {
-      await clientApi.post(`${urlType}/register`, user);
-      navigate(`/${navigateType}-login`);
+      await clientApi.post(`employers/register`, user);
+      navigate(`/employer-login`);
     } catch (error) {
       console.error("There was an error registering the user!", error);
     }
@@ -47,6 +47,22 @@ const SignUp = ({
             className="login_input"
             required
           />
+          <input
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            type="text"
+            className="login_input"
+            placeholder="Company Name"
+            required
+          />
+          <input
+            value={field}
+            onChange={(e) => setField(e.target.value)}
+            type="text"
+            className="login_input"
+            placeholder="Field"
+            required
+          />
           <div className="d-flex justify-content-center">
             <button type="submit" className="mb-4 option-btn d-flex">
               Sign Up
@@ -64,4 +80,4 @@ const SignUp = ({
   );
 };
 
-export default SignUp;
+export default EmployerSignUp;

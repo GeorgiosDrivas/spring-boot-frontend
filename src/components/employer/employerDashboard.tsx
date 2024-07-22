@@ -29,7 +29,8 @@ const EmployerDashboard = () => {
                   />
                 </div>
                 <div>
-                  <h1 className="name">{data ? `${data.companyName}` : ""}</h1>
+                  <h1 className="name text-center">{data ? `${data.companyName}` : ""}</h1>
+                  <p className="field">{data ? `${data.field}` : ""}</p>
                   <p className="location">
                     {data && data.location ? `${data.location}` : ""}
                   </p>
