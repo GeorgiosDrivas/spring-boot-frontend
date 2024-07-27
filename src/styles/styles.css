@@ -145,4 +145,22 @@ body {
   height: 50px;
 }
 
+.searchEmployee {
+  width: 300px;
+  border: 1px solid #EEEDEB;
+  padding: 5px 5px;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.user {
+  cursor: pointer;
+}
+
+.backBtn {
+  border: none;
+  background: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -26,7 +26,7 @@ export interface EmployeeData {
   lastName: string;
   location: string;
   title: string;
-  currentEmployer: string;
+  currentEmployer?: string;
   profileImagePath: string | undefined;
 }
 

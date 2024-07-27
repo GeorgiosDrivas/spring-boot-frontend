@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../hooks/useHandleClick';
 import { User } from '../types/types';
-import { clientApi } from '../api/client';
-
+import { clientApi } from '../api/client'; 
 
 const EmployeeSignUp = () => {
   const [email, setEmail] = useState<string>("");
@@ -70,8 +69,7 @@ const EmployeeSignUp = () => {
             onChange={(e) => setCurrentEmployer(e.target.value)}
             type="text"
             className="login_input"
-            placeholder="Current Employer"
-            required
+            placeholder="Current Employer. Leave empty if None"
           />
           <input
             value={title}

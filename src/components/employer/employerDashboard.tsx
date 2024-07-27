@@ -6,11 +6,15 @@ import EvaluationForm from "./evaluationForm";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
 import { EmployerSearchComp } from "./employerSearchComp";
 import { EmployerSettings } from "./employerSettings";
+import {useState} from 'react';
+import { EmployeeData } from "../../types/types";
+import { EmployeeSearchProfile } from "./employeeSearchProfile";
 
 const EmployerDashboard = () => {
   
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
+  const [selected, setSelected] = useState<EmployeeData>();
 
   useDisplayUser({ linkUrl: "employers" });
 
@@ -30,8 +34,8 @@ const EmployerDashboard = () => {
                 </div>
                 <div>
                   <h1 className="name text-center">{data ? `${data.companyName}` : ""}</h1>
-                  <p className="field">{data ? `${data.field}` : ""}</p>
-                  <p className="location">
+                  <p className="field mb-0">{data ? `${data.field}` : ""}</p>
+                  <p className="location text-center mt-0">
                     {data && data.location ? `${data.location}` : ""}
                   </p>
                 </div>
@@ -74,7 +78,8 @@ const EmployerDashboard = () => {
                   <EmployerProfile userId={id} />
                 </TabPanel>
                 <TabPanel>
-                  <EmployerSearchComp />
+                  {selected ? <EmployeeSearchProfile user={selected} setUser={() => setSelected(undefined)} /> : <EmployerSearchComp setSelected={setSelected}/>
+                  }
                 </TabPanel>
                 <TabPanel>
                   <EmployerSettings />
