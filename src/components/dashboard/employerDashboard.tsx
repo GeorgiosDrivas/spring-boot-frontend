@@ -1,16 +1,22 @@
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import EmployeeProfile from "./employeeProfile";
-import EmployeeEvaluations from "./employeeEvaluations";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import EmployerProfile from "../profile/employerProfile";
+import EvaluationForm from "../employer/evaluationForm";
 import { useDisplayUser } from "../../hooks/useDisplayUser";
-import { EmployeeSettings } from "./employeeSettings";
+import { EmployerSearchComp } from "../employer/employerSearchComp";
+import { EmployerSettings } from "../settings/employerSettings";
+import {useState} from 'react';
+import { EmployeeData } from "../../types/types";
+import { EmployeeSearchProfile } from "../employer/employeeSearchProfile";
 
-const EmployeeDashboard = () => {
+const EmployerDashboard = () => {
+  
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
+  const [selected, setSelected] = useState<EmployeeData>();
 
-  useDisplayUser({ linkUrl: "employees" });
+  useDisplayUser({ linkUrl: "employers" });
 
   return (
     <div className="main_wrapper">
@@ -27,17 +33,9 @@ const EmployeeDashboard = () => {
                   />
                 </div>
                 <div>
-                  <h1 className="name text-start">
-                    {data && data.firstName && data.lastName
-                      ? `${data.firstName} ${data.lastName}`
-                      : "Hello user"}
-                  </h1>
-                  <p className="title mb-0">
-                    {data && data.title && data.currentEmployer
-                      ? `${data.title}, ${data.currentEmployer}`
-                      : ""}
-                  </p>
-                  <p className="location">
+                  <h1 className="name text-center">{data ? `${data.companyName}` : ""}</h1>
+                  <p className="field mb-0">{data ? `${data.field}` : ""}</p>
+                  <p className="location text-center mt-0">
                     {data && data.location ? `${data.location}` : ""}
                   </p>
                 </div>
@@ -54,6 +52,11 @@ const EmployeeDashboard = () => {
                   </button>
                 </Tab>
                 <Tab>
+                  <button className="option_btn mb-2 text-start p-0">
+                    Search
+                  </button>
+                </Tab>
+                <Tab>
                   <button className="option_btn text-start p-0">
                     Settings
                   </button>
@@ -63,13 +66,23 @@ const EmployeeDashboard = () => {
             <div className="col-9">
               <div className="content_wrap">
                 <TabPanel>
-                  <EmployeeEvaluations employeeId={id} />
+                  <EvaluationForm
+                    employerName={data ? data.companyName : "Unknown Employer"}
+                    employerProfileImage={
+                      data ? data.profileImagePath : "Unknown Employer"
+                    }
+                    employerId={id}
+                  />
                 </TabPanel>
                 <TabPanel>
-                  <EmployeeProfile userId={id} />
+                  <EmployerProfile userId={id} />
                 </TabPanel>
                 <TabPanel>
-                  <EmployeeSettings />
+                  {selected ? <EmployeeSearchProfile user={selected} setUser={() => setSelected(undefined)} /> : <EmployerSearchComp setSelected={setSelected}/>
+                  }
+                </TabPanel>
+                <TabPanel>
+                  <EmployerSettings />
                 </TabPanel>
               </div>
             </div>
@@ -80,4 +93,4 @@ const EmployeeDashboard = () => {
   );
 };
 
-export default EmployeeDashboard;
+export default EmployerDashboard;

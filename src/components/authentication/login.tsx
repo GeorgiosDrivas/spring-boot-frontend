@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HandleClick } from "../hooks/useHandleClick";
+import { HandleClick } from "../../hooks/useHandleClick";
 import { useDispatch } from "react-redux";
-import { storeID } from "../store/userSlice";
-import { Authenticate, User } from "../types/types";
-import { clientApi } from "../api/client";
+import { storeID } from "../../store/userSlice";
+import { Authenticate, User } from "../../types/types";
+import { clientApi } from "../../api/client";
 
 const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
   const dispatch = useDispatch();

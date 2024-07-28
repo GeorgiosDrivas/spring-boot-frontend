@@ -36,7 +36,7 @@ export interface EmployeeCredData extends EmployeeData {
   password: string;
 }
 
-export interface Evaluation {
+export interface EvaluationType {
   id: number;
   title: string;
   content: string;

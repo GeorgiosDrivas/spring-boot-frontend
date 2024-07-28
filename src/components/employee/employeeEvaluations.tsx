@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { clientApi } from "../../api/client";
-import { Evaluation } from "../../types/types";
+import { EvaluationType } from "../../types/types";
+import { Evaluation } from "../../utils/evaluation";
 
 const EmployeeEvaluations = ({
   employeeId
 }: {employeeId: number}) => {
-  const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
+  const [evaluations, setEvaluations] = useState<EvaluationType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
 
   // Fetch evaluations using the ID of the employee
   useEffect(() => {
     const fetchEvaluations = async () => {
       try {
-        const response = await clientApi.get<Evaluation[]>(
+        const response = await clientApi.get<EvaluationType[]>(
           `employees/${employeeId}/evaluations`
         );
         setEvaluations(response.data);
@@ -37,20 +39,7 @@ const EmployeeEvaluations = ({
       ) : (
         <>
           {evaluations.map((evaluation) => (
-            <div key={evaluation.id} className="single_evaluation mb-4">
-              <div className="d-flex align-items-center mb-3">
-                <img
-                  src={`http://localhost:8080/uploads/${evaluation.employerId}_${evaluation.employerProfileImage}`}
-                  alt="Profile Image"
-                  className="employer_evaluation_img"
-                />
-                <p className="evaluation_employer ms-3 mt-0 mb-0">{evaluation.employerName}</p>
-              </div>
-              <p className="evaluation_title mb-0 fw-bold">
-                {evaluation.title}
-              </p>
-              <p>{evaluation.content}</p>
-            </div>
+            <Evaluation evaluation={evaluation} key={evaluation.id} />
           ))}
         </>
       )}

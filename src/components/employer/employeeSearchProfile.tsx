@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { clientApi } from "../../api/client";
-import { Evaluation } from "../../types/types";
+import { EvaluationType } from "../../types/types";
+import { Evaluation } from "../../utils/evaluation";
 
 export const EmployeeSearchProfile = ({user, setUser}: {user: any, setUser: any}) => {
-    const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
+    const [evaluations, setEvaluations] = useState<EvaluationType[]>([]);
     
     useEffect(() => {
         const fetchEvaluations = async () => {
             try {
-                const response = await clientApi.get<Evaluation[]>(
-                `employees/${user.id}/evaluations`
+                const response = await clientApi.get<EvaluationType[]>(
+                  `employees/${user.id}/evaluations`
                 );
                 setEvaluations(response.data);
             } catch (error) {
@@ -61,22 +62,7 @@ export const EmployeeSearchProfile = ({user, setUser}: {user: any, setUser: any}
         <div>
           {evaluations
             ? evaluations.map((evaluation) => (
-                <div key={evaluation.id} className="single_evaluation mb-4">
-                  <div className="d-flex align-items-center mb-3">
-                    <img
-                      src={`http://localhost:8080/uploads/${evaluation.employerId}_${evaluation.employerProfileImage}`}
-                      alt="Profile Image"
-                      className="employer_evaluation_img"
-                    />
-                    <p className="evaluation_employer ms-3 mt-0 mb-0">
-                      {evaluation.employerName}
-                    </p>
-                  </div>
-                  <p className="evaluation_title mb-0 fw-bold">
-                    {evaluation.title}
-                  </p>
-                  <p>{evaluation.content}</p>
-                </div>
+                <Evaluation evaluation={evaluation} key={evaluation.id}/>
               ))
             : "Error displaying evaluations"}
         </div>

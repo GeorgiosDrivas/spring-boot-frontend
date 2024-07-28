@@ -1,4 +1,4 @@
-import { HandleClick } from "../hooks/useHandleClick";
+import { HandleClick } from "../../hooks/useHandleClick";
 
 const Landing = () => {
     const handleClick = HandleClick();

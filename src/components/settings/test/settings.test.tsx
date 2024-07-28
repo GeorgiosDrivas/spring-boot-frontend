@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import EmployeeDashboard from "../employeeDashboard";
+import EmployeeDashboard from "../../dashboard/employeeDashboard";
 import { store } from "../../../store/store";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";

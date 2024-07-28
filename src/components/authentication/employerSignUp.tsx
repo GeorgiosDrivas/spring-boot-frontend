@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HandleClick } from '../hooks/useHandleClick';
-import { User } from '../types/types';
-import { clientApi } from '../api/client'; 
+import { HandleClick } from '../../hooks/useHandleClick';
+import { Authenticate, User } from '../../types/types';
+import { clientApi } from '../../api/client';
 
-const EmployeeSignUp = () => {
+
+const EmployerSignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [currentEmployer, setCurrentEmployer] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
+  const [companyName, setCompanyName] = useState<string>("");
+  const [field, setField] = useState<string>("");
 
   const navigate = useNavigate();
   const handleClick = HandleClick();
@@ -18,10 +17,10 @@ const EmployeeSignUp = () => {
   // Checks if user exists in back-end ? redirect to login : do nothing.
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-    const user: User = { email, password, firstName, lastName, currentEmployer, title };
+    const user: User = { email, password, companyName, field };
     try {
-      await clientApi.post(`employees/register`, user);
-      navigate(`/employee-login`);
+      await clientApi.post(`employers/register`, user);
+      navigate(`/employer-login`);
     } catch (error) {
       console.error("There was an error registering the user!", error);
     }
@@ -49,37 +48,21 @@ const EmployeeSignUp = () => {
             required
           />
           <input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
             type="text"
             className="login_input"
-            placeholder="First Name"
+            placeholder="Company Name"
             required
           />
           <input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={field}
+            onChange={(e) => setField(e.target.value)}
             type="text"
             className="login_input"
-            placeholder="Last Name"
+            placeholder="Field"
             required
           />
-          <input
-            value={currentEmployer}
-            onChange={(e) => setCurrentEmployer(e.target.value)}
-            type="text"
-            className="login_input"
-            placeholder="Current Employer. Leave empty if None"
-          />
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            type="text"
-            className="login_input"
-            placeholder="Title"
-            required
-          />
-
           <div className="d-flex justify-content-center">
             <button type="submit" className="mb-4 option-btn d-flex">
               Sign Up
@@ -97,4 +80,4 @@ const EmployeeSignUp = () => {
   );
 };
 
-export default EmployeeSignUp;
+export default EmployerSignUp;
