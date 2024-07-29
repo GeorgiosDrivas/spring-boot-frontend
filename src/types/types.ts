@@ -22,6 +22,7 @@ export interface EmployerData {
 }
 
 export interface EmployeeData {
+  id?: number;
   firstName: string;
   lastName: string;
   location: string;
@@ -37,6 +38,18 @@ export interface EmployeeCredData extends EmployeeData {
 }
 
 export interface EvaluationType {
+  evaluation: {
+    id: number;
+    title: string;
+    content: string;
+    employerName: string;
+    employerProfileImage: string;
+    employerId: number;
+    employeeId: number;
+  };
+}
+
+export interface Evaluations {
   id: number;
   title: string;
   content: string;
@@ -44,13 +57,4 @@ export interface EvaluationType {
   employerProfileImage: string;
   employerId: number;
   employeeId: number;
-}
-
-export interface Employee {
-  id: number;
-  firstName: string;
-  lastName: string;
-  title: string;
-  location: string;
-  profileImagePath: string;
 }

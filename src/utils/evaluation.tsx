@@ -1,7 +1,7 @@
 import { EvaluationType } from "../types/types";
 import {useState} from 'react';
 
-export const Evaluation = ({ evaluation }: EvaluationType | any) => {
+export const Evaluation = ({ evaluation }: EvaluationType) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -32,6 +32,3 @@ export const Evaluation = ({ evaluation }: EvaluationType | any) => {
     </div>
   );
 };
-
-// > 200 === 200
-// true or false

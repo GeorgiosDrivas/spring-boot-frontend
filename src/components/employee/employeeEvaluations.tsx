@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { clientApi } from "../../api/client";
-import { EvaluationType } from "../../types/types";
+import { Evaluations } from "../../types/types";
 import { Evaluation } from "../../utils/evaluation";
 
 const EmployeeEvaluations = ({
   employeeId
 }: {employeeId: number}) => {
-  const [evaluations, setEvaluations] = useState<EvaluationType[]>([]);
+  const [evaluations, setEvaluations] = useState<Evaluations[]>([]);
+  console.log(evaluations);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
@@ -15,7 +16,7 @@ const EmployeeEvaluations = ({
   useEffect(() => {
     const fetchEvaluations = async () => {
       try {
-        const response = await clientApi.get<EvaluationType[]>(
+        const response = await clientApi.get(
           `employees/${employeeId}/evaluations`
         );
         setEvaluations(response.data);
