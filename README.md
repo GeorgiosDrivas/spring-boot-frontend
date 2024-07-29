@@ -1,4 +1,8 @@
 # Employee Evaluation Web App
+![sch1](https://github.com/user-attachments/assets/217482da-1c94-4b12-a96f-e140a5c69d22)
+![sch2](https://github.com/user-attachments/assets/130b103f-fa22-4cc7-95d7-85c1197e551e)
+![sch3](https://github.com/user-attachments/assets/f7771f5d-f1e9-43f8-8cfd-b50172eaffee)
+![sch4](https://github.com/user-attachments/assets/d5344ff9-788c-4a44-9b0a-e7c1bc9ac703)
 
 The Employee Evaluation Web App is a comprehensive platform designed to streamline the process of writing and managing employee evaluations. This web application serves as a bridge between employees and employers, facilitating a transparent and efficient evaluation process.
 
