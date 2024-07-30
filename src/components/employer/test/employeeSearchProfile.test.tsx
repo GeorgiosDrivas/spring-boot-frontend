@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router";
 import { EmployeeSearchProfile } from "../employeeSearchProfile";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 
 const user = {
   id: 2,
@@ -13,17 +13,26 @@ const user = {
   currentEmployer: "Tesla",
 };
 
-test("Should display user when name entered in field", async () => {
-    // Should render the component and the user with the current ID
-    const mocked = jest.fn();
+test("Should display user's data when the component loads", async () => {
 
-    render(
-        <MemoryRouter>
-            <EmployeeSearchProfile user={user} setUser={mocked}/>
-        </MemoryRouter>
-    )
-    const name = screen.getByRole("heading");
-    expect(name).toHaveTextContent("Georgios Drivas");
-    // Check for the user's name
-    // Check for the user's evaluations
+  const setUserMock = jest.fn();
+
+  render(
+    <MemoryRouter>
+      <EmployeeSearchProfile user={user} setUser={setUserMock} />
+    </MemoryRouter>
+  );
+
+  // Check if the user's name is displayed
+  const name = screen.getByRole("heading");
+  expect(name).toHaveTextContent("Georgios Drivas");
+
+  // Check for the user's profile details
+  expect(screen.getByText("Software Engineer - Tesla")).toBeInTheDocument();
+  expect(screen.getByText("Athens")).toBeInTheDocument();
+  expect(screen.getByText("#2")).toBeInTheDocument();
+
+  // Click the back button and verify that setUser was called
+  fireEvent.click(screen.getByRole("button"));
+  expect(setUserMock).toHaveBeenCalled();
 });
