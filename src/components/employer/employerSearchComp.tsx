@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {clientApi} from "../../api/client";
-import { Employee, EmployeeData } from "../../types/types";
+import { EmployeeData } from "../../types/types";
 
 interface Data {
   setSelected: Dispatch<SetStateAction<EmployeeData | undefined>>;
 }
 
 export const EmployerSearchComp = ({setSelected}: Data) => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [employees, setEmployees] = useState<EmployeeData[]>([]);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {

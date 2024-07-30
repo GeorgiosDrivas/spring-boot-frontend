@@ -1,12 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import Landing from '../landing';
+import Landing from '../dashboard/landing';
 
 describe("Landing component tests", () => {
-  test("Should always return true", () => {
-    expect(true).toBe(true);
-  });
 
   test("Heading should be ValuEMe", () => {
     render(
@@ -15,7 +12,7 @@ describe("Landing component tests", () => {
       </MemoryRouter>
     );
 
-    const headingElement = screen.getByText("ValuEMe");
-    expect(headingElement).toBeInTheDocument();
+    const headingElement = screen.getByRole("heading");
+    expect(headingElement).toHaveTextContent("ValuEMe");
   });
 });
