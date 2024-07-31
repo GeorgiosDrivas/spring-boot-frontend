@@ -36,7 +36,7 @@ export const EmployerSearchComp = ({setSelected}: Data) => {
       <ul id="searchList">
         {searchValue
           ? employees
-              .filter((employee) => employee.firstName.includes(searchValue))
+              .filter(employee => employee.firstName.includes(searchValue))
               .map((employee) => (
                 <li
                   className="user"

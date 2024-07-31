@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../../hooks/useHandleClick';
 import { User } from '../../types/types';
 import { clientApi } from '../../api/client'; 
+import { HandleChange } from '../../utils/handleStateChange';
 
 const EmployeeSignUp = () => {
   const [email, setEmail] = useState<string>("");
@@ -35,7 +36,7 @@ const EmployeeSignUp = () => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={HandleChange(setEmail)}
             placeholder="Email"
             className="login_input"
             required
@@ -43,14 +44,14 @@ const EmployeeSignUp = () => {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={HandleChange(setPassword)}
             placeholder="Password"
             className="login_input"
             required
           />
           <input
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={HandleChange(setFirstName)}
             type="text"
             className="login_input"
             placeholder="First Name"
@@ -58,7 +59,7 @@ const EmployeeSignUp = () => {
           />
           <input
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={HandleChange(setLastName)}
             type="text"
             className="login_input"
             placeholder="Last Name"
@@ -66,14 +67,14 @@ const EmployeeSignUp = () => {
           />
           <input
             value={currentEmployer}
-            onChange={(e) => setCurrentEmployer(e.target.value)}
+            onChange={HandleChange(setCurrentEmployer)}
             type="text"
             className="login_input"
             placeholder="Current Employer. Leave empty if None"
           />
           <input
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={HandleChange(setTitle)}
             type="text"
             className="login_input"
             placeholder="Title"

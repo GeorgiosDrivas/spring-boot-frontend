@@ -8,7 +8,7 @@ import { EmployerSearchComp } from "../employer/employerSearchComp";
 import { EmployerSettings } from "../settings/employerSettings";
 import {useState} from 'react';
 import { EmployeeData } from "../../types/types";
-import { EmployeeSearchProfile } from "../employer/employeeSearchProfile";
+import { EmployeeSearchProfile } from "../profile/employeeSearchProfile";
 
 const EmployerDashboard = () => {
   

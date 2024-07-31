@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { storeID } from "../../store/userSlice";
 import { Authenticate, User } from "../../types/types";
 import { clientApi } from "../../api/client";
+import { HandleChange } from "../../utils/handleStateChange";
 
 const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={HandleChange(setEmail)}
             placeholder="Email"
             className="login_input"
             required
@@ -54,7 +55,7 @@ const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={HandleChange(setPassword)}
             placeholder="Password"
             className="login_input"
             required

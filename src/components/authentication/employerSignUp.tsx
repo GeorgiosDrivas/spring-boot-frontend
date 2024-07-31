@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HandleClick } from '../../hooks/useHandleClick';
 import { Authenticate, User } from '../../types/types';
 import { clientApi } from '../../api/client';
+import { HandleChange } from '../../utils/handleStateChange';
 
 
 const EmployerSignUp = () => {
@@ -34,7 +35,7 @@ const EmployerSignUp = () => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={HandleChange(setEmail)}
             placeholder="Email"
             className="login_input"
             required
@@ -42,14 +43,14 @@ const EmployerSignUp = () => {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={HandleChange(setPassword)}
             placeholder="Password"
             className="login_input"
             required
           />
           <input
             value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
+            onChange={HandleChange(setCompanyName)}
             type="text"
             className="login_input"
             placeholder="Company Name"
@@ -57,7 +58,7 @@ const EmployerSignUp = () => {
           />
           <input
             value={field}
-            onChange={(e) => setField(e.target.value)}
+            onChange={HandleChange(setField)}
             type="text"
             className="login_input"
             placeholder="Field"
