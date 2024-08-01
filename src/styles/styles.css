@@ -201,4 +201,8 @@ ul li:hover {
   cursor: pointer;
 }
 
+.backBtn {
+  transform: rotate(180deg);
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -92,7 +92,16 @@ const EmployeeSignUp = () => {
         className="position-absolute back-btn"
         onClick={() => handleClick("")}
       >
-        Back
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30px"
+          height="30px"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="arrow-svg backBtn"
+        >
+          <path d="M4 12H20M20 12L16 8M20 12L16 16" stroke="#000000" />
+        </svg>
       </button>
     </>
   );
