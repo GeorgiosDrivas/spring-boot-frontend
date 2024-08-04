@@ -50,38 +50,54 @@ const EvaluationForm = ({
           Here you can evaluate one of your current or past employees.
         </p>
         <form
+          id="evaluation_form"
           className="d-flex flex-column justify-content-center align-items-center mt-4"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <input
-            className="edit_profile_input"
-            type="number"
-            placeholder="Employee's ValueMe ID"
-            value={employeeId}
-            onChange={HandleChange(setEmployeeId)}
-          />
-          <input
-            className="edit_profile_input"
-            type="text"
-            placeholder="Evaluation's title"
-            value={title}
-            onChange={HandleChange(setTitle)}
-          />
-          <input
-            className="edit_profile_input"
-            type="textarea"
-            placeholder="Evaluation's content"
-            value={content}
-            onChange={HandleChange(setContent)}
-          />
-          {
-            successMessage !== "" && (
-              <p>{successMessage}</p>
-            )
-          }
-          <button type="submit" className="edit_profile_btn">
-            Submit
-          </button>
+          <div className="input_wrap d-flex justify-content-between align-items-center">
+            <div>
+              <label className="d-block" htmlFor="id">
+                Employee's ID
+              </label>
+              <input
+                id="id"
+                className="edit_profile_input"
+                type="number"
+                value={employeeId}
+                onChange={HandleChange(setEmployeeId)}
+              />
+            </div>
+            <div>
+              <label className="d-block" htmlFor="title">
+                Evaluation's title
+              </label>
+              <input
+                id="title"
+                className="edit_profile_input"
+                type="text"
+                value={title}
+                onChange={HandleChange(setTitle)}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="d-block" htmlFor="content">
+              Evaluation's content
+            </label>
+            <input
+              id="content"
+              className="edit_profile_input textarea"
+              type="textarea"
+              value={content}
+              onChange={HandleChange(setContent)}
+            />
+          </div>
+          {successMessage !== "" && <p>{successMessage}</p>}
+          <div className="evaluation_form_btn">
+            <button type="submit" className="edit_profile_btn">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </>
