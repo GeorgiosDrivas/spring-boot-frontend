@@ -43,7 +43,7 @@ const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
     <>
       <div className="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <form onSubmit={handleSubmit} className="d-flex flex-column">
-          <h2 className="text-center mb-5">Login</h2>
+          <h2 className="text-center mb-5">{navigateType[0].toUpperCase() + navigateType.slice(1)} Login</h2>
           <input
             type="email"
             value={email}
@@ -88,11 +88,8 @@ const Login= ({ urlType, navigateType }: Readonly<Authenticate>) => {
           viewBox="0 0 24 24"
           fill="none"
           className="arrow-svg backBtn"
-          >
-          <path
-            d="M4 12H20M20 12L16 8M20 12L16 16"
-            stroke="#000000"
-          />
+        >
+          <path d="M4 12H20M20 12L16 8M20 12L16 16" stroke="#000000" />
         </svg>
       </button>
     </>

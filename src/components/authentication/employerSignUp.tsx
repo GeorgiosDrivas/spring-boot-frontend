@@ -31,7 +31,7 @@ const EmployerSignUp = () => {
     <>
       <div className="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <form onSubmit={handleSubmit} className="d-flex flex-column">
-          <h2 className="text-center mb-5">Sign Up</h2>
+          <h2 className="text-center mb-5">Employer Sign Up</h2>
           <input
             type="email"
             value={email}

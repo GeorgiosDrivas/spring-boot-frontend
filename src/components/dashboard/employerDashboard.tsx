@@ -15,7 +15,6 @@ const EmployerDashboard = () => {
   const data = useSelector((state: RootState) => state.userSlice.data);
   const id = useSelector((state: RootState) => state.userSlice.id);
   const [selected, setSelected] = useState<EmployeeData>();
-  console.log(typeof setSelected);
   useDisplayUser({ linkUrl: "employers" });
 
   return (
