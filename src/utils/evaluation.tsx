@@ -17,7 +17,7 @@ export const Evaluation = ({ evaluation }: EvaluationType) => {
         </p>
       </div>
       <p className="evaluation_title mb-0 fw-bold">{evaluation.title}</p>
-      <p>
+      <p data-testid="content">
         {expanded && evaluation.content.length > 200
           ? evaluation.content
           : !expanded && evaluation.content.length <= 200
