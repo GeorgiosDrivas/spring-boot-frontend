@@ -15,14 +15,14 @@ const EmployeeProfile = ({ userId }: { userId: number }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const user: EmployeeData = {
+    const user = {
       firstName,
       lastName,
       location,
       title,
       currentEmployer,
       profileImagePath: imageName,
-    };
+    } satisfies EmployeeData;
 
     try {
       if (imageData) {

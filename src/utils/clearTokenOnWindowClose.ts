@@ -1,4 +1,4 @@
-export const clearTokenOnWindowClose = (): void => {
+export const clearTokenOnWindowClose = () => {
     window.addEventListener('beforeunload', () => {
         localStorage.removeItem('token');
     });

@@ -16,8 +16,8 @@ export const useDisplayUser = ({ linkUrl}: {linkUrl: Readonly<string>}) => {
                     throw new Error('Failed to fetch user data');
                 }
                 dispatch(storeData(response.data));
-            } catch (error: any) {
-                console.error('Error fetching user data:', error.message);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
             }
         };
 
