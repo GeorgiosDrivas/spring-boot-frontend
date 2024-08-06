@@ -68,54 +68,78 @@ const EmployeeProfile = ({ userId }: { userId: number }) => {
       <h1 className="mb-0">Profile information</h1>
       <p className="mt-0">Here you can change your profile's information.</p>
       <form
+        id="profile_form"
         className="d-flex flex-column justify-content-center align-items-center mt-4"
         onSubmit={handleSubmit}
       >
-        <input
-          className="edit_profile_input"
-          type="text"
-          required
-          placeholder="First name"
-          value={firstName}
-          onChange={HandleChange(setFirstName)}
-        />
-        <input
-          className="edit_profile_input"
-          type="text"
-          required
-          placeholder="Last name"
-          value={lastName}
-          onChange={HandleChange(setLastName)}
-        />
-        <input
-          className="edit_profile_input"
-          type="text"
-          required
-          placeholder="Location"
-          value={location}
-          onChange={HandleChange(setLocation)}
-        />
-        <input
-          className="edit_profile_input"
-          type="text"
-          required
-          placeholder="Job title"
-          value={title}
-          onChange={HandleChange(setTitle)}
-        />
-        <input
-          className="edit_profile_input"
-          type="text"
-          required
-          placeholder="Current employer"
-          value={currentEmployer}
-          onChange={HandleChange(setCurrentEmployer)}
-        />
-        <input type="file" accept="image/*" onChange={handleUploadClick} />
-        <button
-          type="submit"
-          className="edit_profile_btn"
-        >
+        <div className="d-flex profile_input_wrap justify-content-between">
+          <div>
+            <label htmlFor="name">Name</label>
+            <input
+              className="edit_profile_input"
+              type="text"
+              required
+              id="name"
+              value={firstName}
+              onChange={HandleChange(setFirstName)}
+            />
+          </div>
+          <div>
+            <label htmlFor="surname">Surname</label>
+            <input
+              className="edit_profile_input"
+              type="text"
+              required
+              id="surname"
+              value={lastName}
+              onChange={HandleChange(setLastName)}
+            />
+          </div>
+          <div>
+            <label htmlFor="title">Job Title</label>
+            <input
+              className="edit_profile_input"
+              type="text"
+              required
+              id="title"
+              value={title}
+              onChange={HandleChange(setTitle)}
+            />
+          </div>
+        </div>
+        <div>
+          <label className="mb-2" htmlFor="employer">
+            Current Employer
+          </label>
+          <input
+            className="edit_profile_input"
+            type="text"
+            required
+            id="employer"
+            value={currentEmployer}
+            onChange={HandleChange(setCurrentEmployer)}
+          />
+        </div>
+        <div className="profile_input_second_wrap d-flex justify-content-between">
+          <div>
+            <label htmlFor="location">Location</label>
+            <input
+              className="edit_profile_input"
+              type="text"
+              required
+              id="location"
+              value={location}
+              onChange={HandleChange(setLocation)}
+            />
+          </div>
+          <input
+            type="file"
+            id="img_field"
+            accept="image/*"
+            onChange={handleUploadClick}
+          />
+        </div>
+        <button type="submit" className="edit_profile_btn">
           Submit
         </button>
       </form>
