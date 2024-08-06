@@ -68,8 +68,7 @@ const EmployeeProfile = ({ userId }: { userId: number }) => {
       <h1 className="mb-0">Profile information</h1>
       <p className="mt-0">Here you can change your profile's information.</p>
       <form
-        id="profile_form"
-        className="d-flex flex-column justify-content-center align-items-center mt-4"
+        className="profile_form d-flex flex-column justify-content-center align-items-center mt-4"
         onSubmit={handleSubmit}
       >
         <div className="d-flex profile_input_wrap justify-content-between">
@@ -134,7 +133,7 @@ const EmployeeProfile = ({ userId }: { userId: number }) => {
           </div>
           <input
             type="file"
-            id="img_field"
+            className="img_field"
             accept="image/*"
             onChange={handleUploadClick}
           />

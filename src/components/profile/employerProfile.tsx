@@ -8,7 +8,6 @@ const EmployerProfile = ({ userId }: {userId: number}) => {
   const [location, setLocation] = useState<string>("");
   const [field, setField] = useState<string>("");
   const [imageData, setImageData] = useState<FormData | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>("");
   const [imageName, setImageName] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,7 +37,6 @@ const EmployerProfile = ({ userId }: {userId: number}) => {
       const imageData = new FormData();
       imageData.append("imageFile", file);
       setImageData(imageData);
-      setImagePreview(URL.createObjectURL(file));
       setImageName(file.name);
     }
   };
@@ -56,38 +54,44 @@ const EmployerProfile = ({ userId }: {userId: number}) => {
     <div>
       <p>Complete your profile information</p>
       <form
-        className="d-flex flex-column justify-content-center align-items-center mt-4"
+        className="profile_form d-flex flex-column justify-content-around align-items-center mt-4"
         onSubmit={handleSubmit}
       >
-        <input
-          type="text"
-          className="edit_profile_input"
-          placeholder="Compay name"
-          value={companyName}
-          onChange={HandleChange(setCompanyName)}
-        />
-        <input
-          type="text"
-          className="edit_profile_input"
-          placeholder="Location"
-          value={location}
-          onChange={HandleChange(setLocation)}
-        />
-        <input
-          type="text"
-          className="edit_profile_input"
-          placeholder="Field"
-          value={field}
-          onChange={HandleChange(setField)}
-        />
-        <input type="file" accept="image/*" onChange={handleUploadClick} />
-        {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Image Preview"
-            className="image-preview"
-          />
-        )}
+        <div className="profile_input_wrap d-flex">
+          <div>
+            <label htmlFor="name">Company Name</label>
+            <input
+              type="text"
+              className="edit_profile_input"
+              id="name"
+              value={companyName}
+              onChange={HandleChange(setCompanyName)}
+            />
+          </div>
+          <div>
+            <label htmlFor="location">Location</label>
+            <input
+              type="text"
+              className="edit_profile_input"
+              id="location"
+              value={location}
+              onChange={HandleChange(setLocation)}
+            />
+          </div>
+        </div>
+        <div className="profile_input_second_wrap d-flex justify-content-around">
+          <div>
+            <label htmlFor="field">Field</label>
+            <input
+              type="text"
+              className="edit_profile_input"
+              id="field"
+              value={field}
+              onChange={HandleChange(setField)}
+            />
+          </div>
+          <input type="file" className="img_field ps-0" accept="image/*" onChange={handleUploadClick} />
+        </div>
         <button type="submit" className="edit_profile_btn">
           Submit
         </button>
