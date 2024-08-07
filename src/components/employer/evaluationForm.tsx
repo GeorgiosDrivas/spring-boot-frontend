@@ -13,6 +13,7 @@ const EvaluationForm = ({
 }) => {
   const [employeeId, setEmployeeId] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+  const [rating, setRating] = useState<number>(0);
   const [content, setContent] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
 
@@ -25,6 +26,7 @@ const EvaluationForm = ({
       employerName,
       employerProfileImage,
       employerId,
+      rating
     };
 
     try {
@@ -91,6 +93,10 @@ const EvaluationForm = ({
               value={content}
               onChange={HandleChange(setContent)}
             />
+          </div>
+          <div>
+            <label htmlFor="rating">Rating</label>
+            <input type="number" max={10} value={rating} onChange={(e) => setRating(Number(e.target.value))}/>
           </div>
           {successMessage !== "" && <p>{successMessage}</p>}
           <div className="evaluation_form_btn">

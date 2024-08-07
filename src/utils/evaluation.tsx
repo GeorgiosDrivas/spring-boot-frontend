@@ -17,6 +17,7 @@ export const Evaluation = ({ evaluation }: EvaluationType) => {
         </p>
       </div>
       <p className="evaluation_title mb-0 fw-bold">{evaluation.title}</p>
+      <p>Rating: {evaluation.rating} / 10</p>
       <p data-testid="content">
         {expanded && evaluation.content.length > 200
           ? evaluation.content

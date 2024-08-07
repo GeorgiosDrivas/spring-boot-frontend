@@ -59,6 +59,7 @@ export const EmployerSearchComp = ({setSelected}: Data) => {
                       <p className="text-center mt-0">{employee.location}</p>
                     </div>
                     <div className="profile_details mt-4">
+                      <p>{employee.rating} / 10</p>
                       <p>#{employee.id}</p>
                     </div>
                   </div>
