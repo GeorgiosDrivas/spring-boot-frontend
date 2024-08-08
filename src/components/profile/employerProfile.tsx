@@ -52,12 +52,12 @@ const EmployerProfile = ({ userId }: {userId: number}) => {
 
   return (
     <div>
-      <p>Complete your profile information</p>
+      <h1 className="mb-5">Complete or edit your profile information</h1>
       <form
         className="profile_form d-flex flex-column justify-content-around align-items-center mt-4"
         onSubmit={handleSubmit}
       >
-        <div className="profile_input_wrap d-flex">
+        <div className="profile_input_wrap d-flex justify-content-around">
           <div>
             <label htmlFor="name">Company Name</label>
             <input
@@ -90,7 +90,7 @@ const EmployerProfile = ({ userId }: {userId: number}) => {
               onChange={HandleChange(setField)}
             />
           </div>
-          <input type="file" className="img_field ps-0" accept="image/*" onChange={handleUploadClick} />
+          <input type="file" className="img_field ps-5" accept="image/*" onChange={handleUploadClick} />
         </div>
         <button type="submit" className="edit_profile_btn">
           Submit

@@ -29,7 +29,6 @@ export interface EmployeeData {
   title: string;
   currentEmployer?: string;
   profileImagePath: string | undefined;
-  rating: number;
 }
 
 export interface EmployeeCredData extends EmployeeData {
@@ -59,4 +58,5 @@ export interface Evaluations {
   employerProfileImage: string;
   employerId: number;
   employeeId: number;
+  rating: number;
 }

@@ -7,10 +7,8 @@ const EmployeeEvaluations = ({
   employeeId
 }: {employeeId: number}) => {
   const [evaluations, setEvaluations] = useState<Evaluations[]>([]);
-  console.log(evaluations);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [expanded, setExpanded] = useState(false);
 
   // Fetch evaluations using the ID of the employee
   useEffect(() => {
